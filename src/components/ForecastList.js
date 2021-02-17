@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useEffect,useCallback,useState} from 'react';
+import {useSelector,useDispatch} from 'react-redux'
 import ForecastItem from "./ForecastItem";
 import rain from '../asserts/svgIcons/rain.svg';
 import sun from '../asserts/svgIcons/sun.svg';
+import {forecastsUrl} from "../services/api";
 
 const DUMMY_LIST = [
     {
@@ -46,10 +48,31 @@ const DUMMY_LIST = [
     }
 ]
 const ForecastList = () => {
+    const dispatch = useDispatch();
+    const state= useSelector(state=>state);
+
+    const {currentLocation,foreCastLoading,weekForecast} = state;
+
+    const getCurrentForecastLocation = useCallback(() => {
+        if(currentLocation!==null){
+            dispatch(forecastsUrl(currentLocation.key))
+        }
+
+    },[currentLocation])
+    useEffect(()=>{
+        getCurrentForecastLocation();
+
+    },[])
+
+    if(foreCastLoading){
+        return <h1>Loading...</h1>
+    }
+    console.log(weekForecast)
     return <div className="forecast_list">
-        {DUMMY_LIST.map(item =>
-            <ForecastItem item={item} key={item.id} />
+        {weekForecast && weekForecast.length > 0 && weekForecast.map((day)=>
+            <ForecastItem item={day} key={day.id} />
         )}
+
     </div>
 }
 export default ForecastList;

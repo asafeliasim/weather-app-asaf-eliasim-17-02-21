@@ -1,51 +1,34 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
-const useStyles = makeStyles((theme)=>({
-    root: {
-        minWidth: 200,
-        margin:'1rem 2rem'
-    },
-    bullet: {
-        display: 'inline-block',
-        margin: '0 2px',
-        transform: 'scale(0.8)',
-    },
-    title: {
-        fontSize: 14,
-    },
-    pos: {
-        margin: 14,
+import {forecastStyle} from './material-css/useStyles';
+import {getIconFromApi} from '../services/api';
 
-    },
-    avatar: {
-        display: 'flex',
-        '& > *': {
-            margin: theme.spacing(2),
-        },
-    }
-}));
+
 
 const ForecastItem = ({item}) => {
-    const classes = useStyles();
+    const dayByIndex = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const classes = forecastStyle();
+    const dayToDisplay = dayByIndex[new Date(item.Date).getDay()]
+    console.log(item.Date)
     return <Card className={`${classes.root} forecast_item`}>
         <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
-                {item.day}
+                {dayToDisplay}
             </Typography>
             <Typography variant="h5" component="h2">
-                {item.status}
+                {item.Day.IconPhrase}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
-                {item.max}&#176; | {item.min}&#176;
+                {item.Temperature.Maximum.Value}&#176; | {item.Temperature.Minimum.Value}&#176;
             </Typography>
             <div className="forecast_icon">
-                <Avatar alt="ICON" src={item.icon}/>
-            </div>
+                <img src={getIconFromApi(item.Day.Icon)} alt="image" />
 
+            </div>
         </CardContent>
         </Card>
 }
