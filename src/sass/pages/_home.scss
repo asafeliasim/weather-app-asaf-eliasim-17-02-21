@@ -1,0 +1,22 @@
+.home{
+
+  &_search{
+    padding: 10rem 0;
+    @media screen and (max-width: 960px){
+      padding: 5rem 0;
+    }
+  }
+  &_location{
+    padding-left: 45rem;
+    @media screen and(max-width: 960px){
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  &_forecast{
+    padding: 10rem 0;
+    display: flex;
+    justify-content: center;
+  }
+}

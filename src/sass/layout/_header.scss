@@ -1,0 +1,50 @@
+.header{
+  padding: 2rem;
+  height: 8rem;
+  background: $light-primary-color;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  &_night{
+    background: #dbdbdb;
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    height: 8rem;
+    color: $dark-primary-color;
+  }
+  &_switch{
+   padding: 0 2rem;
+
+  }
+  &_logo{
+    display: flex;
+
+    &-img{
+      width: 6rem;
+      z-index: 1;
+      @media screen and (max-width: 960px){
+        width: 3rem;
+      }
+    }
+    &-title{
+      font-size: 2rem;
+      margin-left: 1rem;
+      margin-top: 1.5rem;
+      text-transform: uppercase;
+      @media screen and (max-width: 960px){
+       display: none;
+      }
+    }
+  }
+}
+
+
+// material ui
+.MuiTypography-body1 {
+  font-size: 1.4rem!important;
+  font-family: inherit!important;
+  @media screen and (max-width: 960px){
+    font-size: 1rem!important;
+  }
+}
