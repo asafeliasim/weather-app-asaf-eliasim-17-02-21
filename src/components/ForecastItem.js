@@ -1,19 +1,32 @@
-import React from 'react';
-
+import React,{useState} from 'react';
+import {useSelector} from 'react-redux';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
 import {forecastStyle} from './material-css/useStyles';
 import {getIconFromApi} from '../services/api';
+import styled, { keyframes } from 'styled-components';
+import { bounce } from 'react-animations'
 
+const bounceAnimation = keyframes`${bounce}`;
+
+const BouncyDiv = styled.div`
+  animation: infinite 2s ${bounceAnimation};
+`;
+const getCelsius = (temp) => {
+    return ((temp -32)*5/9).toFixed(2);
+}
 
 
 const ForecastItem = ({item}) => {
     const dayByIndex = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const classes = forecastStyle();
     const dayToDisplay = dayByIndex[new Date(item.Date).getDay()]
-    console.log(item.Date)
+  
+    const app = useSelector(state => state.app);
+    const {isCel} = app;
+    const max = isCel ?  getCelsius(item.Temperature.Maximum.Value): item.Temperature.Maximum.Value ;
+    const min = isCel ?  getCelsius(item.Temperature.Minimum.Value): item.Temperature.Minimum.Value
     return <Card className={`${classes.root} forecast_item`}>
         <CardContent>
             <Typography className={classes.title} color="textSecondary" gutterBottom>
@@ -23,12 +36,12 @@ const ForecastItem = ({item}) => {
                 {item.Day.IconPhrase}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
-                {item.Temperature.Maximum.Value}&#176; | {item.Temperature.Minimum.Value}&#176;
+                
+                {max}&#176; | {min}&#176;
             </Typography>
-            <div className="forecast_icon">
+            <BouncyDiv className="forecast_icon">
                 <img src={getIconFromApi(item.Day.Icon)} alt="image" />
-
-            </div>
+            </BouncyDiv>
         </CardContent>
         </Card>
 }

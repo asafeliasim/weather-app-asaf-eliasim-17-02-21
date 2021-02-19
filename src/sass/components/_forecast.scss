@@ -5,8 +5,10 @@
     }
   }
   &_list{
-    display: flex;
     flex-wrap: wrap;
+    padding: 10rem 0;
+    display: flex;
+    justify-content: center;
   }
   &_icon{
     margin-top:5rem;

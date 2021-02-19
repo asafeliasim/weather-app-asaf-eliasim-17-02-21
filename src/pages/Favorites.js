@@ -1,8 +1,11 @@
 import React from 'react';
-
+import {useSelector} from 'react-redux';
+import FavoriteList from "../components/FavoriteList";
 const Favorites = () => {
+    const userPref = useSelector(state=>state.userPref);
+
     return <div>
-        <h1>THIS IS Favorites PAGE</h1>
+       <FavoriteList favorites={userPref.favorites}/>
     </div>
 }
 export default Favorites;

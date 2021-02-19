@@ -1,78 +1,72 @@
 import React, {useEffect, useCallback,useState} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
-import clouds from '../asserts/images/clouds.png';
-import night from '../asserts/images/night.jpg';
-import Search from "../components/Search";
+import AuthComplete from "../components/AuthComplete";
 import LocalLocation from "../components/LocalLocation";
 import ForecastList from "../components/ForecastList";
-import {autoCompleteUrl,currentWeatherFiveDays,getLocationByGeoPosition,forecastsUrl} from '../services/api';
+import {getLocationByLocationKey,forecastsUrl} from '../services/api';
 
 
-const lightStyle = {
-    backgroundImage:`url(${clouds})`,
-    backgroundPosition:'center',
-    backgroundSize:'cover',
-    backgroundRepeat:'no-repeat',
-
-}
-const darkStyle = {
-    backgroundImage:`url(${night})`,
-    backgroundPosition:'center',
-    backgroundSize:'cover',
-    backgroundRepeat:'no-repeat',
-}
-const DUMMY_OBJ = {
-    country:'Israel',
-    city:'Tel Aviv',
-    degree: '51'
-}
+import axios from 'axios';
 const Home = () => {
+
     const dispatch = useDispatch();
-    const state = useSelector(state=> state);
-    const [currentCityWeather, setCurrentCityWeather] = useState(null);
-    const {loading,currentLocation,isDark} = state;
-
- /*   const getLocationForecast = useCallback(()=>{
-        if(currentCityWeather !== null){
-            const locationKey = currentCityWeather.key;
-            console.log(locationKey)
-            dispatch(forecastsUrl(locationKey))
+    const app = useSelector(state=> state.app);
+  
+    
+    const {loading,currentLocation,isCel} = app;
+    const [cel,setCel] = useState(isCel)
+    const [authCompleteString,setAuthCompleteString] = useState('');
+    const [cities,setCities] = useState([]);
+    const [query,setQuery] = useState('');
+   
+    
+    useEffect(()=>{ 
+        if(!loading){
+           
+            getForcast();
         }
-    },[])*/
+    },[currentLocation])
 
+    const getForcast = () => {
+        dispatch(forecastsUrl(currentLocation.key,isCel))
+    };
 
-    const getCurrentLocation = () => {
-        dispatch(getLocationByGeoPosition(32.0853, 34.7818))
+    const handleAuthComplete = (string) => {
+        setAuthCompleteString(string);
+        console.log("authCompleteString: " + authCompleteString);
+        console.log("query " + query);
+        if(string){
+            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=sTea70BgiP5F4nFE50N1fCDG3WGt8Xcb&q=${query}`)
+                .then(res=>{
+                    setCities(res.data.map(city => city.LocalizedName));
+                    console.log("cities: " + cities);
+                }).catch(err=>{
+                console.log(err)
+            })
+        
+        }     
+    }
+    const handleQueryComplete = (city) => {
+        console.log(city);
+        dispatch(getLocationByLocationKey(city));
+        setQuery('');
     }
 
-    useEffect(()=>{
-        if(currentCityWeather === null){
-            getCurrentLocation();
-            setCurrentCityWeather(currentLocation);
-        }
-    },[])
-
-
- /*   useEffect(()=>{
-        if(currentCityWeather !== null){
-            getLocationForecast()
-        }
-    },[getLocationForecast])*/
 
     if(loading){
         return <h2>Loading</h2>
     }
 
-    return <div style={!isDark ? lightStyle : darkStyle}>
-            <div className="home_search">
-                <Search />
-            </div>
-            <div className="home_location">
-                <LocalLocation location={currentLocation}/>
-            </div>
-            <div className="home_forecast">
+    return <div >
+                <AuthComplete
+                    onChange={handleAuthComplete}
+                    value={authCompleteString}
+                    cities={cities}
+                    setQuery={setQuery}
+                    handleQueryComplete={handleQueryComplete}
+                />
+                <LocalLocation location={currentLocation} />
                 <ForecastList />
             </div>
-        </div>
 }
 export default Home;

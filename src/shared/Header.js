@@ -6,8 +6,8 @@ import NavLinks from "./NavLinks";
 import moon from '../asserts/svgIcons/moon.png';
 
 const Header = () => {
-    const isDark = useSelector(state => state.isDark);
-
+    const app = useSelector(state => state.app);
+    const {isDark}= app;
     return <div>
             <header className={!isDark ? "header": "header_night"}>
             <div className="header_logo">

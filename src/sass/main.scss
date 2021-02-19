@@ -2,10 +2,13 @@
 @import './base/typogrophy';
 @import './abstracts/variables';
 @import './base/base';
-
+@import './base/utils';
 @import './layout/header';
 @import './layout/navlinks';
 @import './pages/home';
 @import './components/search';
 @import './components/location';
 @import './components/forecast';
+@import './components/button';
+@import './components/favorite';
+

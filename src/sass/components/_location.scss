@@ -1,11 +1,26 @@
 .local{
   font-size: 2rem;
+  margin-top: 8rem;
+  padding-left: 47rem;
   font-family: inherit;
   font-weight: bold;
+  @media screen and(max-width: 960px){
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
   &-light{
+    margin-top: 8rem;
+    padding-left: 47rem;
     font-size: 2rem;
     font-family: inherit;
     font-weight: bold;
     color: #fff;
+  }
+  &_hart-red{
+    color: red;
+  }
+  &_hart-dark{
+    color: black;
   }
 }

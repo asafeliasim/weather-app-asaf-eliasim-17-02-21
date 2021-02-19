@@ -1,23 +1,56 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
-const LocalLocation = ({location}) => {
-    const isDark = useSelector(state => state.isDark);
+import React,{useState,useEffect,useContext} from 'react';
+import {useSelector,useDispatch} from 'react-redux';
+import {addToFavorite,removeFavorite} from '../redux/actions';
+
+
+const LocalLocation = () => {
+    const dispatch = useDispatch();
+
+
+    const app = useSelector(state=> state.app)
+    const userPref = useSelector(state => state.userPref);
+    const {isDark,currentLocation,weekForecast} = app;
+    const {favorites} = userPref;
+    const [exists,setExists] = useState(false) 
+    useEffect(()=>{
+        setExists(favorites.some(favorite=> favorite.city === currentLocation.city));
+        console.log(exists);
+    },[exists])
+
+    const addLocationToFavorite = () => {
+        setExists(true);
+        let location = {
+            key: currentLocation.key,
+            city: currentLocation.city,
+            country:currentLocation.country,
+            temprature: weekForecast[0].Temperature.Maximum.Value,
+            icon: weekForecast[0].Day.Icon,
+            status: weekForecast[0].Day.IconPhrase
+        }
+        console.log("locatio: " , location);
+        dispatch(addToFavorite(location));
+    }
+    const removeLocationFromFavorite = () => {
+        setExists(false);
+        let location = favorites.find(l => l.city === currentLocation.city);
+        dispatch(removeFavorite(location));
+    }
+
     return <div className={!isDark?"local":"local-light"}>
 
             <div className="local_country">
-                {location.country}
+                {currentLocation.country}
             </div>
             <div className="local_city">
-                {location.city}
+                {currentLocation.city}
             </div>
-           {/* <div className="local_degree">
-                {location.degree} &#8457;
-            </div>*/}
-            <div className="local_hart">
-                <a href="#" style={{textDecoration: 'none',color:'red',fontSize:'3rem'}}>
+            <div className="local_hart"  onClick={exists? removeLocationFromFavorite:addLocationToFavorite}>
+                <a href="#" className={exists ? "local_hart-red": "local_hart-dark" } style={{textDecoration: 'none', fontSize: '3rem'}} >
                     <i className="fas fa-heart"/>
                 </a>
             </div>
+
+
         </div>
 }
 export default LocalLocation;

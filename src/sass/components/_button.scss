@@ -1,0 +1,15 @@
+.btn{
+  text-decoration: none;
+  padding: .5rem 1rem;
+  transition: .5s all linear;
+
+  &-danger{
+    background: $danger-color;
+    color: #fff;
+    &:hover{
+      background: #fff;
+      color: $danger-color;
+      border: .1rem solid $danger-color;
+    }
+  }
+}
