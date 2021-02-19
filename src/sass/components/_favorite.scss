@@ -2,6 +2,10 @@
   &_list{
     display: flex;
     padding: 8rem 15rem;
+    flex-wrap: wrap;
+    @media screen and(max-width:960px) {
+        padding: 8rem 0;
+    }
   }
   &_btn{
     margin-top: 2.5rem;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
@@ -13,8 +13,13 @@ const FavoriteItem = ({location}) => {
     const history = useHistory();
     const dispatch = useDispatch();
     const classes = forecastStyle();
-
-   
+    const app = useSelector(state=>state.app);
+    const {isCel} = app;
+    const getCelsius = (temp) => {
+        return ((temp -32)*5/9).toFixed(2);
+    }
+    let temperature = isCel ? getCelsius(location.temprature) : location.temprature;
+    
     const backToHomePage = () => {
         dispatch(getLocationByLocationKey(location.city));
         history.push('/');
@@ -28,7 +33,8 @@ const FavoriteItem = ({location}) => {
                 {location.status}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                {location.temprature}&#176;
+
+                {temperature}&#176;
                 </Typography>
                     <img src={getIconFromApi(location.icon)} alt="image" />     
                 <div className="favorite_btn">

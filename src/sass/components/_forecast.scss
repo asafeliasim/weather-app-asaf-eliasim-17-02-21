@@ -9,6 +9,10 @@
     padding: 10rem 0;
     display: flex;
     justify-content: center;
+    @media screen and (max-width: 960px){
+      margin-top: -15rem;
+      padding: 0;
+    }
   }
   &_icon{
     margin-top:5rem;
