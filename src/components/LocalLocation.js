@@ -15,7 +15,7 @@ const LocalLocation = () => {
     useEffect(()=>{
         setExists(favorites.some(favorite=> favorite.city === currentLocation.city));
         console.log(exists);
-    },[exists])
+    },[exists,currentLocation])
 
     const addLocationToFavorite = () => {
         setExists(true);

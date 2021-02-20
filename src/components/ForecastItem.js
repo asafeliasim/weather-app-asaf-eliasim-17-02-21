@@ -5,17 +5,14 @@ import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import {forecastStyle} from './material-css/useStyles';
 import {getIconFromApi} from '../services/api';
+import {getCelsius} from '../context/utils/helpers';
+
 import styled, { keyframes } from 'styled-components';
 import { bounce } from 'react-animations'
-
 const bounceAnimation = keyframes`${bounce}`;
-
 const BouncyDiv = styled.div`
   animation: infinite 2s ${bounceAnimation};
 `;
-const getCelsius = (temp) => {
-    return ((temp -32)*5/9).toFixed(2);
-}
 
 
 const ForecastItem = ({item}) => {

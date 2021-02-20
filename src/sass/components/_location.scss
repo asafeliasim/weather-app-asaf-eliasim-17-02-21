@@ -17,10 +17,18 @@
     font-weight: bold;
     color: #fff;
   }
+  &_hart{
+    &:active{
+      transform: translateY(4px);
+      box-shadow: .1rem .1rem .1rem #333;
+    }
+  }
   &_hart-red{
     color: red;
+
   }
   &_hart-dark{
     color: black;
+
   }
 }

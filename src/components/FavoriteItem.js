@@ -7,7 +7,8 @@ import {getIconFromApi} from "../services/api";
 import Card from "@material-ui/core/Card";
 import {forecastStyle} from "./material-css/useStyles";
 import {getLocationByLocationKey} from '../services/api';
-
+import {getCelsius} from "../context/utils/helpers";
+import {REMOVE_FROM_FAVORITE} from '../redux/constants';
 
 const FavoriteItem = ({location}) => {
     const history = useHistory();
@@ -15,17 +16,22 @@ const FavoriteItem = ({location}) => {
     const classes = forecastStyle();
     const app = useSelector(state=>state.app);
     const {isCel} = app;
-    const getCelsius = (temp) => {
-        return ((temp -32)*5/9).toFixed(2);
-    }
+
     let temperature = isCel ? getCelsius(location.temprature) : location.temprature;
     
     const backToHomePage = () => {
         dispatch(getLocationByLocationKey(location.city));
         history.push('/');
     }
-    return <Card className={`${classes.root} forecast_item favorite-item`} onClick={backToHomePage}>
-            <CardContent>
+    const removeHandler = (location) => {
+
+        dispatch({
+            type:REMOVE_FROM_FAVORITE,
+            payload: location
+        })
+    }
+    return <Card className={`${classes.root} forecast_item favorite-item`} >
+            <CardContent onClick={backToHomePage}>
                 <Typography className={classes.title} color="textSecondary" gutterBottom>
                     {location.city}
                 </Typography>
@@ -33,17 +39,15 @@ const FavoriteItem = ({location}) => {
                 {location.status}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-
                 {temperature}&#176;
                 </Typography>
-                    <img src={getIconFromApi(location.icon)} alt="image" />     
-                <div className="favorite_btn">
-                    <a href="/" className="btn btn-danger">
-                        Remove
-                    </a>
-                </div>
-
+                    <img src={getIconFromApi(location.icon)} alt="image" />
             </CardContent>
+            <div className="favorite_btn">
+                <button className="btn btn-danger" onClick={()=>removeHandler(location)}>
+                    Remove
+                </button>
+            </div>
         </Card>
 }
 

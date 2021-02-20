@@ -1,8 +1,10 @@
 .btn{
+  margin-bottom: 2rem;
   text-decoration: none;
   padding: .5rem 1rem;
   transition: .5s all linear;
-
+  cursor: pointer;
+  border: none;
   &-danger{
     background: $danger-color;
     color: #fff;

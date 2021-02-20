@@ -14,7 +14,6 @@ const Home = () => {
   
     
     const {loading,currentLocation,isCel} = app;
-    const [cel,setCel] = useState(isCel)
     const [authCompleteString,setAuthCompleteString] = useState('');
     const [cities,setCities] = useState([]);
     const [query,setQuery] = useState('');
@@ -36,7 +35,7 @@ const Home = () => {
         console.log("authCompleteString: " + authCompleteString);
         console.log("query " + query);
         if(string){
-            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=sTea70BgiP5F4nFE50N1fCDG3WGt8Xcb&q=${query}`)
+            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=miFeUPPGfnom82XvoKGnOMTCmEsyFnij&q=${query}`)
                 .then(res=>{
                     setCities(res.data.map(city => city.LocalizedName));
                     console.log("cities: " + cities);
