@@ -99,12 +99,14 @@ export const errorReducer = (state={error:false},action) => {
         case SET_ERROR_ALERT:
             return{
                 error:true,
-                message:payload
+                message:payload.errorText,
+                severity: payload.severity
             }
         case REFRESH_ERROR_ALERT:
             return{
                 error:false,
-                message: ''
+                message: '',
+
             }
         default:
             return state;

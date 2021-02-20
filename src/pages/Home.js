@@ -1,9 +1,9 @@
-import React, {useEffect, useCallback,useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import AuthComplete from "../components/AuthComplete";
 import LocalLocation from "../components/LocalLocation";
 import ForecastList from "../components/ForecastList";
-import {getLocationByLocationKey,forecastsUrl} from '../services/api';
+import {getLocationByLocationKey,forecastsUrl,apiKey} from '../services/api';
 import ErrorAlert from "../shared/ErrorAlert";
 
 import axios from 'axios';
@@ -33,21 +33,17 @@ const Home = () => {
 
     const handleAuthComplete = (string) => {
         setAuthCompleteString(string);
-        console.log("authCompleteString: " + authCompleteString);
-        console.log("query " + query);
         if(string){
-            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=miFeUPPGfnom82XvoKGnOMTCmEsyFnij&q=${query}`)
+            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${query}`)
                 .then(res=>{
                     setCities(res.data.map(city => city.LocalizedName));
                     console.log("cities: " + cities);
                 }).catch(err=>{
                 console.log(err)
             })
-        
         }     
     }
     const handleQueryComplete = (city) => {
-
         dispatch(getLocationByLocationKey(city));
         setQuery('');
     }
@@ -57,7 +53,7 @@ const Home = () => {
         return <h2>Loading</h2>
     }
 
-    return <div >
+    return <div>
                 <AuthComplete
                     onChange={handleAuthComplete}
                     value={authCompleteString}
@@ -65,6 +61,7 @@ const Home = () => {
                     setQuery={setQuery}
                     handleQueryComplete={handleQueryComplete}
                 />
+
                 <ErrorAlert openAlert={error}/>
                 <LocalLocation location={currentLocation} />
                 <ForecastList />

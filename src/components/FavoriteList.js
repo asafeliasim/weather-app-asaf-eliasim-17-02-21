@@ -16,7 +16,9 @@ const FavoriteList = () => {
     const {favorites} = userPref;
     console.log(favorites)
     if(favorites.length === 0){
-        return <h1>There are no City in the list</h1>
+        return <div className="favorite_none">
+            <h1>There are no cities in your favorites list.</h1>
+        </div>
     }
     
     return <FadeList className="favorite_list">

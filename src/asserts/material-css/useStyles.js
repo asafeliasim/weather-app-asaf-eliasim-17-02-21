@@ -58,3 +58,15 @@ export const errorStyle = makeStyles((theme)=>({
         }
     },
 }))
+export const loadingStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        justifyContent:"center",
+        height:'20rem',
+        fontSize:'12rem',
+        '& > * + *': {
+            marginLeft: theme.spacing(4),
+
+        },
+    },
+}));

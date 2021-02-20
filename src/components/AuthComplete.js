@@ -15,7 +15,10 @@ const AuthComplete = ({cities,setQuery,handleQueryComplete,onChange}) => {
         if(!/^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/.test(query) && query !== ""){
             dispatch({
                 type:SET_ERROR_ALERT,
-                payload: "Invalid input. Please Enter only English characters."
+                payload: {
+                    errorText: "Invalid input. Please Enter only English characters.",
+                    severity: "error"
+                }
             })
         }
         else{

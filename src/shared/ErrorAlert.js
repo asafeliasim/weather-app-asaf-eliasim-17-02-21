@@ -10,7 +10,7 @@ const ErrorAlert = ({openAlert}) => {
     const dispatch = useDispatch();
     const [open,setOpen] = useState(false);
     const errorAlert = useSelector(state => state.errorAlert);
-    const {message} = errorAlert;
+    const {message,severity} = errorAlert;
 
     useEffect(()=>{
         setOpen(openAlert);
@@ -27,7 +27,7 @@ const ErrorAlert = ({openAlert}) => {
         aria-describedby="alert-dialog-description"
         >
             <div className={classes.root}>
-                <Alert severity="error">{message}</Alert>
+                <Alert severity={severity}>{message}</Alert>
             </div>
     </Dialog>
 }

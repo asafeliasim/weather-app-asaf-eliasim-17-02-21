@@ -1,9 +1,20 @@
 import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST,SET_ERROR_ALERT} from "../redux/constants";
 import axios from "axios";
-const apiKey =  'miFeUPPGfnom82XvoKGnOMTCmEsyFnij';
+export const apiKey =  'pERaSOCO8LG1ebXOirtXnBBfcbpSs3ZC';
 
-export const autoCompleteUrl = (locationQuery) => {
-    return `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${locationQuery}`
+export const autoCompleteUrl = (locationQuery) => dispatch => {
+    axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${locationQuery}`)
+        .then(res=> {
+            return res;
+        }).catch(err =>{
+        dispatch({
+            type:SET_ERROR_ALERT,
+            payload:{
+                errorText:err.message,
+                severity:"warning"
+            }
+        })
+    })
 }
 /*export const currentConditionsUrl = locationKey => {
     return `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}`
@@ -28,10 +39,13 @@ export const getLocationByGeoPosition = (lat, long) => dispatch => {
              })
          })
          .catch(err=>{
-            dispatch({
-                type:SET_ERROR_ALERT,
-                payload:err.message
-            })
+             dispatch({
+                 type:SET_ERROR_ALERT,
+                 payload:{
+                     errorText:err.message,
+                     severity:"warning"
+                 }
+             })
         })
 }
 export const getLocationByLocationKey = (locationKey) => dispatch => {
@@ -50,10 +64,13 @@ export const getLocationByLocationKey = (locationKey) => dispatch => {
                 payload:locationResult
             })
         }).catch(err=>{
-            dispatch({
-                type:SET_ERROR_ALERT,
-                payload:err.message
-            })
+        dispatch({
+            type:SET_ERROR_ALERT,
+            payload:{
+                errorText:err.message,
+                severity:"warning"
+            }
+        })
     })
 }
 export const forecastsUrl = (locationKey,isCel) => dispatch => {
@@ -72,7 +89,10 @@ export const forecastsUrl = (locationKey,isCel) => dispatch => {
         }).catch(err=>{
         dispatch({
             type:SET_ERROR_ALERT,
-            payload:err.message
+            payload:{
+                errorText:err.message,
+                severity:"warning"
+            }
         })
     })
 }
