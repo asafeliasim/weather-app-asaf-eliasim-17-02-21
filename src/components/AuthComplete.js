@@ -1,18 +1,29 @@
 import React,{useState} from 'react';
+import {useDispatch} from "react-redux";
 import {Form} from 'react-bootstrap';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import {SET_ERROR_ALERT } from '../redux/constants';
 
-
+const regExp = '/^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/'
 const AuthComplete = ({cities,setQuery,handleQueryComplete,onChange}) => {
 
     const [search,setSearch] = useState("");
+    const dispatch = useDispatch();
     const handleChange = (query) => {
-        setSearch(query);
-        setQuery(query);
-        onChange(query);
+        if(!/^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/.test(query) && query !== ""){
+            dispatch({
+                type:SET_ERROR_ALERT,
+                payload: "Invalid input. Please Enter only English characters."
+            })
+        }
+        else{
+            setSearch(query);
+            setQuery(query);
+            onChange(query);
+
+        }
 
     }
 
@@ -31,7 +42,7 @@ const AuthComplete = ({cities,setQuery,handleQueryComplete,onChange}) => {
             </Form.Group>
 
             {cities.length > 1 && search !== "" &&
-                <List component="nav" aria-label="main mailbox folders" style={{position:'fixed',left:'40%',background:'#fff'}}>
+                <List component="nav" aria-label="main mailbox folders" style={{position:'fixed',left:'42%',background:'#fff',zIndex:'10'}}>
                     {cities.map(city =>
                         <ListItem button onClick={(e)=>handleSelectCity(city)} onChange={(e)=>handleChange(e.target.value)}>
                             <ListItemText primary={city} />

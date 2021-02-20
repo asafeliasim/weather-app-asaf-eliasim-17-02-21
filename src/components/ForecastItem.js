@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-import {forecastStyle} from './material-css/useStyles';
+import {forecastStyle} from '../asserts/material-css/useStyles';
 import {getIconFromApi} from '../services/api';
 import {getCelsius} from '../context/utils/helpers';
 
@@ -36,9 +36,17 @@ const ForecastItem = ({item}) => {
                 
                 {max}&#176; | {min}&#176;
             </Typography>
-            <BouncyDiv className="forecast_icon">
-                <img src={getIconFromApi(item.Day.Icon)} alt="image" />
-            </BouncyDiv>
+            {item.Day.Icon <= 3 ? (  <BouncyDiv className="forecast_icon">
+                    <img src={getIconFromApi(item.Day.Icon)} alt="image" />
+                </BouncyDiv>)
+                :
+                (
+                    <div className="forecast_icon">
+                        <img src={getIconFromApi(item.Day.Icon)} alt="image" />
+                    </div>
+                )
+            }
+
         </CardContent>
         </Card>
 }

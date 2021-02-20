@@ -5,10 +5,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import {getIconFromApi} from "../services/api";
 import Card from "@material-ui/core/Card";
-import {forecastStyle} from "./material-css/useStyles";
+import {forecastStyle} from "../asserts/material-css/useStyles";
 import {getLocationByLocationKey} from '../services/api';
 import {getCelsius} from "../context/utils/helpers";
-import {REMOVE_FROM_FAVORITE} from '../redux/constants';
+import {REMOVE_FROM_FAVORITE,SET_HOMEPAGE_LINK} from '../redux/constants';
 
 const FavoriteItem = ({location}) => {
     const history = useHistory();
@@ -22,12 +22,18 @@ const FavoriteItem = ({location}) => {
     const backToHomePage = () => {
         dispatch(getLocationByLocationKey(location.city));
         history.push('/');
+        dispatch({
+            type:SET_HOMEPAGE_LINK
+        })
     }
     const removeHandler = (location) => {
 
         dispatch({
             type:REMOVE_FROM_FAVORITE,
             payload: location
+        })
+        dispatch({
+            type:SET_HOMEPAGE_LINK
         })
     }
     return <Card className={`${classes.root} forecast_item favorite-item`} >

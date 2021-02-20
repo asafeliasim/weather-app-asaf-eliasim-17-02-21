@@ -1,5 +1,4 @@
-
-import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST} from "../redux/constants";
+import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST,SET_ERROR_ALERT} from "../redux/constants";
 import axios from "axios";
 const apiKey =  'miFeUPPGfnom82XvoKGnOMTCmEsyFnij';
 
@@ -29,8 +28,11 @@ export const getLocationByGeoPosition = (lat, long) => dispatch => {
              })
          })
          .catch(err=>{
-         console.log(err)
-     })
+            dispatch({
+                type:SET_ERROR_ALERT,
+                payload:err.message
+            })
+        })
 }
 export const getLocationByLocationKey = (locationKey) => dispatch => {
     
@@ -47,7 +49,12 @@ export const getLocationByLocationKey = (locationKey) => dispatch => {
                 type:SET_LOCATION_BY_GEO,
                 payload:locationResult
             })
-        })
+        }).catch(err=>{
+            dispatch({
+                type:SET_ERROR_ALERT,
+                payload:err.message
+            })
+    })
 }
 export const forecastsUrl = (locationKey,isCel) => dispatch => {
    
@@ -63,12 +70,14 @@ export const forecastsUrl = (locationKey,isCel) => dispatch => {
             })
 
         }).catch(err=>{
-        console.log(err)
+        dispatch({
+            type:SET_ERROR_ALERT,
+            payload:err.message
+        })
     })
 }
 
 export const getIconFromApi = (icon) => {
-
         if (icon < 10) {
             icon = '0' + icon
         }

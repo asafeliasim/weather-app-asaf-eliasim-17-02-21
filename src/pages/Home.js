@@ -4,14 +4,15 @@ import AuthComplete from "../components/AuthComplete";
 import LocalLocation from "../components/LocalLocation";
 import ForecastList from "../components/ForecastList";
 import {getLocationByLocationKey,forecastsUrl} from '../services/api';
-
+import ErrorAlert from "../shared/ErrorAlert";
 
 import axios from 'axios';
 const Home = () => {
 
     const dispatch = useDispatch();
     const app = useSelector(state=> state.app);
-  
+    const errorAlert = useSelector(state=> state.errorAlert);
+    const {error} = errorAlert;
     
     const {loading,currentLocation,isCel} = app;
     const [authCompleteString,setAuthCompleteString] = useState('');
@@ -46,7 +47,7 @@ const Home = () => {
         }     
     }
     const handleQueryComplete = (city) => {
-        console.log(city);
+
         dispatch(getLocationByLocationKey(city));
         setQuery('');
     }
@@ -64,6 +65,7 @@ const Home = () => {
                     setQuery={setQuery}
                     handleQueryComplete={handleQueryComplete}
                 />
+                <ErrorAlert openAlert={error}/>
                 <LocalLocation location={currentLocation} />
                 <ForecastList />
             </div>

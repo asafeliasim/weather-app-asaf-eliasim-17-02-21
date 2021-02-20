@@ -5,7 +5,9 @@ import {
     SET_LOCATION_FORECAST,
     REMOVE_FROM_FAVORITE,
     SET_HOMEPAGE_LINK,
-    SET_TEMP_DEGREE
+    SET_TEMP_DEGREE,
+    SET_ERROR_ALERT,
+    REFRESH_ERROR_ALERT
 } from "./constants";
 
 console.log(JSON.parse(localStorage.getItem("favorites")));
@@ -90,4 +92,21 @@ export const favoritesReducers = (state={favorites:userFav,loading:true},action)
             return state    
     }
 
+}
+export const errorReducer = (state={error:false},action) => {
+    const {type,payload} = action;
+    switch (type) {
+        case SET_ERROR_ALERT:
+            return{
+                error:true,
+                message:payload
+            }
+        case REFRESH_ERROR_ALERT:
+            return{
+                error:false,
+                message: ''
+            }
+        default:
+            return state;
+    }
 }

@@ -42,3 +42,19 @@ export const forecastStyle = makeStyles((theme)=>({
         },
     }
 }));
+export const errorStyle = makeStyles((theme)=>({
+    root: {
+        width: '100%',
+        '& > * + *': {
+            marginTop: theme.spacing(4),
+        },
+        '& .MuiAlert-message':{
+            fontSize:18,
+            padding:'2rem 1rem'
+        },
+        '& .MuiSvgIcon-fontSizeInherit':{
+            fontSize:28,
+            marginTop: '1.2rem'
+        }
+    },
+}))
