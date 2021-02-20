@@ -10,7 +10,8 @@
     display: flex;
     justify-content: center;
     @media screen and (max-width: 960px){
-      margin-top: -15rem;
+      margin-top: 8rem;
+      flex-direction: column;
       padding: 0;
     }
   }

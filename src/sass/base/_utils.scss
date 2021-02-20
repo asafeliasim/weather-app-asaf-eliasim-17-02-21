@@ -1,8 +1,22 @@
 .MuiList-padding {
   width: 15%!important;
   margin: 0 auto!important;
+  @media screen and (max-width: 960px){
+    width: 75%!important;
+
+  }
 }
 
 .favorite-item{
   cursor: pointer;
+}
+.autocomplete{
+  position:fixed;
+  left:42%;
+  background:#fff;
+  zIndex:10;
+  @media screen and (max-width: 960px){
+
+    left:2%;
+  }
 }

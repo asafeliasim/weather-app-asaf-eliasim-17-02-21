@@ -45,7 +45,7 @@ const AuthComplete = ({cities,setQuery,handleQueryComplete,onChange}) => {
             </Form.Group>
 
             {cities.length > 1 && search !== "" &&
-                <List component="nav" aria-label="main mailbox folders" style={{position:'fixed',left:'42%',background:'#fff',zIndex:'10'}}>
+                <List component="nav" className="autocomplete" aria-label="main mailbox folders">
                     {cities.map(city =>
                         <ListItem button onClick={(e)=>handleSelectCity(city)} onChange={(e)=>handleChange(e.target.value)}>
                             <ListItemText primary={city} />

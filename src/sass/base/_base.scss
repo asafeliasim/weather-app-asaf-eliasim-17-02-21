@@ -15,5 +15,7 @@ body{
   padding: 1rem;
   font-size: 1.2rem;
   font-family: $primary-font;
-
+  @media screen and (max-width: 960px) {
+    padding: 0;
+  }
 }

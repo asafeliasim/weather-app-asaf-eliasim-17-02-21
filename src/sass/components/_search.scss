@@ -5,5 +5,9 @@
   padding-top: 8rem;
   &_input{
     padding: 1rem 3rem;
+    @media screen and(max-width: 960px){
+      width: 75%;
+      margin-left: 5rem;
+    }
   }
 }
