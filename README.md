@@ -26,7 +26,7 @@ Build from one component:
 
 ![](/image/‏‏favorites.PNG)
 
-#Extras
+# Extras
 There are two Switch toggle buttons- 
 1. Enable to change the web theme color.
 
