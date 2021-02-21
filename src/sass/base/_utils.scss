@@ -11,10 +11,6 @@
   cursor: pointer;
 }
 .autocomplete{
-  position:fixed;
-  left:42%;
-  background:#fff;
-  zIndex:10;
   @media screen and (max-width: 960px){
 
     left:2%;
