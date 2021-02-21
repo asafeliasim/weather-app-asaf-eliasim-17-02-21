@@ -23,4 +23,14 @@ The page build from three main components:
 Favorites Page - to presents user favorites locations.
 Build from one component:
 1. Favorites list - render each Favorite location separately.
+
 ![](/image/‏‏favorites.PNG)
+
+#Extras
+There are two Switch toggle buttons- 
+1. Enable to change the web theme color.
+
+![](/image/‏‏darkTheme.PNG)
+
+2. Enable to change the degree type (Fahrenheit/Celsius).
+
