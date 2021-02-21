@@ -18,6 +18,6 @@ The page build from three main components:
 2. LocalLocation - the current location (by the user search) - the default is Tel-Aviv, Israel.
 3. Forecast - List of the 5 days of forecast.
 
-![](/image/head.png)
+![](/image/head.PNG)
 
 
