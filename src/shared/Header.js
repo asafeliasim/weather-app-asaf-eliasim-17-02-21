@@ -1,21 +1,37 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useSelector} from 'react-redux';
 import sun from '../asserts/images/sunLogo.png';
 import SwitchButton from "./SwitchButton";
 import NavLinks from "./NavLinks";
 import moon from '../asserts/svgIcons/moon.png';
 import {fadeInLeft} from 'react-animations';
+import SideDrawer from "./SideDrawer";
 import styled, { keyframes } from 'styled-components';
 //<h2 className="header_logo-title">Herolo app</h2>
 const fadeAnimation = keyframes`${fadeInLeft}`;
 const FadeLogo = styled.div`
   animation: 2s ${fadeAnimation};
 `;
+const desktop = window.innerWidth > 960 ;
+
 const Header = () => {
+
+    const [drawerIsOpen,setDrawerIsOpen] = useState(false);
+
+    const openDrawerHandler = () => {
+        setDrawerIsOpen(true);
+
+    }
+    const closeDrawerHandler = () => setDrawerIsOpen(false);
 
     const app = useSelector(state => state.app);
     const {isDark}= app;
-    return <div>
+    return <div >
+        {drawerIsOpen && <SideDrawer>
+            <div className="header_mobile-links">
+                <NavLinks />
+            </div>
+        </SideDrawer>}
             <header className={!isDark ? "header": "header_night"}>
             <FadeLogo className="header_logo">
                 <a href="/">      
@@ -26,9 +42,22 @@ const Header = () => {
             <div className="header_switch">
                 <SwitchButton />
             </div>
-            <div className="header_links">
-                <NavLinks />
-            </div>
+                {desktop ?
+                    (
+                        <div className="header_links">
+                            <NavLinks />
+                        </div>
+                    ):
+                    (
+                        <button className="header_mobile-btn" onClick={openDrawerHandler}>
+                            <span />
+                            <span />
+                            <span />
+                        </button>
+                    )
+                }
+
+
 
         </header>
 

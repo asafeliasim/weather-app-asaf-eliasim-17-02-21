@@ -1,6 +1,6 @@
 import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST,SET_ERROR_ALERT} from "../redux/constants";
 import axios from "axios";
-export const apiKey =  'zCaFerSzkAfl7Ss8g3xN7yIet6F9hi7f';
+export const apiKey =  'GRwS1houYmjysJfDZbx8lsQjcm1tpukN';
 
 export const autoCompleteUrl = (locationQuery) => dispatch => {
     axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${locationQuery}`)

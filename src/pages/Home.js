@@ -5,7 +5,7 @@ import LocalLocation from "../components/LocalLocation";
 import ForecastList from "../components/ForecastList";
 import {getLocationByLocationKey,forecastsUrl,apiKey} from '../services/api';
 import ErrorAlert from "../shared/ErrorAlert";
-
+import Loading from "../shared/Loading";
 import axios from 'axios';
 const Home = () => {
 
@@ -50,7 +50,7 @@ const Home = () => {
 
 
     if(loading){
-        return <h2>Loading</h2>
+        return <Loading/>
     }
 
     return <div>
