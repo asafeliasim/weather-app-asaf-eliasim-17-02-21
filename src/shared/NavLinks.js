@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'; 
 import {  SET_HOMEPAGE_LINK} from '../redux/constants';
 
+const mobile = window.innerWidth < 960;
 const NavLinks = ({desktop,onClose}) => {
     const dispatch = useDispatch();
 
@@ -13,7 +14,10 @@ const NavLinks = ({desktop,onClose}) => {
         dispatch({
             type:SET_HOMEPAGE_LINK
         })
-        onClose();
+        if(mobile){
+            onClose();
+        }
+
     }
     return <ul className={`${desktop ? "nav" : "nav-mobile"}`}>
                 <li className="nav_link" onClick={handleLinkClicked}>
