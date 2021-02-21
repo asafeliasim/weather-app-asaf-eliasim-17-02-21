@@ -32,9 +32,7 @@ const FavoriteItem = ({location}) => {
             type:REMOVE_FROM_FAVORITE,
             payload: location
         })
-        dispatch({
-            type:SET_HOMEPAGE_LINK
-        })
+
     }
     return <Card className={`${classes.root} forecast_item favorite-item`} >
             <CardContent onClick={backToHomePage}>
