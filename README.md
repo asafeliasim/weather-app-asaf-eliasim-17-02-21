@@ -22,5 +22,5 @@ The page build from three main components:
 
 Favorites Page - to presents user favorites locations.
 Build from one component:
-1. Favorites list - render each Favorite location speedily.
-![](/image/favorites.PNG)
+1. Favorites list - render each Favorite location separately.
+![](/image/‏‏favorites.PNG)
