@@ -23,11 +23,11 @@ const Home = () => {
     useEffect(()=>{ 
         if(!loading){
            
-            getForcast();
+            getCurrentForecast();
         }
     },[currentLocation])
 
-    const getForcast = () => {
+    const getCurrentForecast = () => {
         dispatch(forecastsUrl(currentLocation.key,isCel))
     };
 

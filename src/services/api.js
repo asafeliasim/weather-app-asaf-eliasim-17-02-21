@@ -1,6 +1,6 @@
 import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST,SET_ERROR_ALERT} from "../redux/constants";
 import axios from "axios";
-export const apiKey =  'pERaSOCO8LG1ebXOirtXnBBfcbpSs3ZC';
+export const apiKey =  'zCaFerSzkAfl7Ss8g3xN7yIet6F9hi7f';
 
 export const autoCompleteUrl = (locationQuery) => dispatch => {
     axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${locationQuery}`)
@@ -16,12 +16,6 @@ export const autoCompleteUrl = (locationQuery) => dispatch => {
         })
     })
 }
-/*export const currentConditionsUrl = locationKey => {
-    return `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}`
-}
-export const currentWeatherFiveDays = locationKey => {
-    return `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}/?apikey=${apiKey}`
-}*/
 export const getLocationByGeoPosition = (lat, long) => dispatch => {
 
      axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${long}`)
@@ -79,7 +73,7 @@ export const forecastsUrl = (locationKey,isCel) => dispatch => {
         .then(res=>{
 
             const {data} = res;
-
+            console.log(data.DailyForecasts)
             const fiveDays = data.DailyForecasts
             dispatch({
                 type:SET_LOCATION_FORECAST,
