@@ -20,4 +20,7 @@ The page build from three main components:
 
 ![](/image/head.PNG)
 
-
+Favorites Page - to presents user favorites locations.
+Build from one component:
+1. Favorites list - render each Favorite location speedily.
+![](/image/favorites.PNG)
