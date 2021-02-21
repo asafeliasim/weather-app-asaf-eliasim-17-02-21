@@ -30,7 +30,7 @@ Build from one component:
 There are two Switch toggle buttons- 
 1. Enable to change the web theme color.
 
-![](/image/‏‏darkTheme.PNG)
+![](/image/darkTheme.PNG)
 
 2. Enable to change the degree type (Fahrenheit/Celsius).
 
