@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'; 
 import {  SET_HOMEPAGE_LINK} from '../redux/constants';
 
-const NavLinks = ({desktop}) => {
+const NavLinks = ({desktop,onClose}) => {
     const dispatch = useDispatch();
 
     const app = useSelector(state => state.app);
@@ -13,6 +13,7 @@ const NavLinks = ({desktop}) => {
         dispatch({
             type:SET_HOMEPAGE_LINK
         })
+        onClose();
     }
     return <ul className={`${desktop ? "nav" : "nav-mobile"}`}>
                 <li className="nav_link" onClick={handleLinkClicked}>

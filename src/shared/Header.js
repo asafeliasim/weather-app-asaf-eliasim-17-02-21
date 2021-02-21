@@ -31,7 +31,7 @@ const Header = () => {
         {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}/>}
         {drawerIsOpen && <SideDrawer>
             <div className="header_mobile-links">
-                <NavLinks desktop={false}/>
+                <NavLinks desktop={false} onClose={closeDrawerHandler}/>
             </div>
         </SideDrawer>}
             <header className={!isDark ? "header": "header_night"}>
