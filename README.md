@@ -28,7 +28,7 @@ Favorites Page - to presents user favorites locations.
 Build from one component:
 1. Favorites list - render each Favorite location separately.
 
-![](/image/‏‏favorites.PNG)
+![](/image/‏‏favorites.jpg)
 
 # Extras
 There are two Switch toggle buttons- 
