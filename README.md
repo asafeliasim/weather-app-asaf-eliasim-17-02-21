@@ -3,8 +3,9 @@ Responsive Front Reactjs App that presents live weather forecast to the user by 
 The App was build in React and using third libraries such as React-Bootstrap, Material-UI, react-router-dom, etc. 
 Using AccuWeather API to receive live data of weather from all over the world. 
 
-Deploy app - https://asaf-eliasim-17-02-21.herokuapp.com/
-Accuwather API - https://www.accuweather.com/
+Deploy app - https://asaf-eliasim-17-02-21.herokuapp.com/ .
+
+Accuwather API - https://www.accuweather.com/ .
 
 # State manegment 
 Using react-redux to manage the state with using tools (hooks) such as useDisptach and useSelector to call actions 
