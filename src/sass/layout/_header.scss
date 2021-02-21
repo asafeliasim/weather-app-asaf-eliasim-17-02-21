@@ -42,6 +42,9 @@
     padding: 2rem;
     height: 8rem;
     color: $dark-primary-color;
+    @media screen and (max-width: 960px){
+      padding: 0 2rem;
+    }
   }
   &_switch{
     padding: 0 2rem;

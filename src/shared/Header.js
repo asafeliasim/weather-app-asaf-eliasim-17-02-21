@@ -7,6 +7,7 @@ import moon from '../asserts/svgIcons/moon.png';
 import {fadeInLeft} from 'react-animations';
 import SideDrawer from "./SideDrawer";
 import styled, { keyframes } from 'styled-components';
+import Backdrop from "./Backdrop";
 //<h2 className="header_logo-title">Herolo app</h2>
 const fadeAnimation = keyframes`${fadeInLeft}`;
 const FadeLogo = styled.div`
@@ -26,10 +27,11 @@ const Header = () => {
 
     const app = useSelector(state => state.app);
     const {isDark}= app;
-    return <div >
+    return <div>
+        {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}/>}
         {drawerIsOpen && <SideDrawer>
             <div className="header_mobile-links">
-                <NavLinks />
+                <NavLinks desktop={false}/>
             </div>
         </SideDrawer>}
             <header className={!isDark ? "header": "header_night"}>
@@ -45,7 +47,7 @@ const Header = () => {
                 {desktop ?
                     (
                         <div className="header_links">
-                            <NavLinks />
+                            <NavLinks desktop={true}/>
                         </div>
                     ):
                     (

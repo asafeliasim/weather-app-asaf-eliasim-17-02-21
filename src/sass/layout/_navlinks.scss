@@ -1,7 +1,9 @@
 .nav{
   list-style-type: none;
   display: flex;
-
+  &-mobile{
+    flex-direction: column;
+  }
   &_link{
     margin: 2rem;
     text-decoration: none;

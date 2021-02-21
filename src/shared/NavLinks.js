@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useSelector,useDispatch} from 'react-redux'; 
 import {  SET_HOMEPAGE_LINK} from '../redux/constants';
 
-const NavLinks = () => {
+const NavLinks = ({desktop}) => {
     const dispatch = useDispatch();
 
     const app = useSelector(state => state.app);
@@ -14,7 +14,7 @@ const NavLinks = () => {
             type:SET_HOMEPAGE_LINK
         })
     }
-    return <ul className="nav">
+    return <ul className={`${desktop ? "nav" : "nav-mobile"}`}>
                 <li className="nav_link" onClick={handleLinkClicked}>
                     <Link to="/" className={homePage ? "link-active" : "link"}>Home</Link>
                 </li>

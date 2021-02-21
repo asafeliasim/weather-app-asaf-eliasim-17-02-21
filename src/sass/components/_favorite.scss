@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     @media screen and(max-width:960px) {
         padding: 8rem 0;
+        flex-direction: column;
     }
   }
   &_btn{
