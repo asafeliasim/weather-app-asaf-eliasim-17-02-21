@@ -5,7 +5,7 @@ Using AccuWeather API to receive live data of weather from all over the world.
 
 Deploy app - https://asaf-eliasim-17-02-21.herokuapp.com/ .
 
-Accuwather API - https://www.accuweather.com/ .
+Accuweather API - https://www.accuweather.com/ .
 
 # State manegment 
 Using react-redux to manage the state with using tools (hooks) such as useDisptach and useSelector to call actions 
