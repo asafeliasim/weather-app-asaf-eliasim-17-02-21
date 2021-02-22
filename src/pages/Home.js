@@ -3,10 +3,11 @@ import {useSelector,useDispatch} from 'react-redux';
 import AuthComplete from "../components/AuthComplete";
 import LocalLocation from "../components/LocalLocation";
 import ForecastList from "../components/ForecastList";
-import {getLocationByLocationKey,forecastsUrl,apiKey} from '../services/api';
+import {getLocationByLocationKey,forecastsUrl} from '../services/api';
 import ErrorAlert from "../shared/ErrorAlert";
 import Loading from "../shared/Loading";
 import axios from 'axios';
+import env from "react-dotenv";
 const Home = () => {
 
     const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const Home = () => {
     const handleAuthComplete = (string) => {
         setAuthCompleteString(string);
         if(string){
-            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${query}`)
+            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${env.API_KEY}&q=${query}`)
                 .then(res=>{
                     setCities(res.data.map(city => city.LocalizedName));
                     console.log("cities: " + cities);
