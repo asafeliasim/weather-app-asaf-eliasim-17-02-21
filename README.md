@@ -32,7 +32,7 @@ Build from one component:
 
 # Extras
 There are two Switch toggle buttons- 
-1. Enable to change the web theme color.
+1. Enable to change the web theme color. The theme color change by time (dark between 18:00 to 6:00 , light 6:00 to 18:00)
 
 ![](/image/darkTheme.PNG)
 
