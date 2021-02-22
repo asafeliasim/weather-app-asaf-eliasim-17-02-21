@@ -43,7 +43,7 @@ const FavoriteItem = ({location}) => {
                 {location.status}
                 </Typography>
                 <Typography className={classes.pos} color="textSecondary">
-                {temperature}&#176;
+                    {temperature}&#176;{isCel ? " C": " F"}
                 </Typography>
                     <img src={getIconFromApi(location.icon)} alt="image" />
             </CardContent>

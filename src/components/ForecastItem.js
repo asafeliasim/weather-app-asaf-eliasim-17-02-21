@@ -34,7 +34,7 @@ const ForecastItem = ({item}) => {
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
                 
-                {max}&#176; | {min}&#176;
+                {max}&#176;{isCel ? " C": " F"} | {min}&#176;{isCel ? " C": " F"}
             </Typography>
             {item.Day.Icon <= 3 ? (  <BouncyDiv className="forecast_icon">
                     <img src={getIconFromApi(item.Day.Icon)} alt="image" />

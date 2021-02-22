@@ -188,7 +188,7 @@ window.env = {
   "npm_package_description": "Responsive Front Reactjs App that presents live weather forecast to the user by his searching. \r The App was build in React and using third libraries such as React-Bootstrap, Material-UI, react-router-dom, etc. \r Using AccuWeather API to receive live data of weather from all over the world.",
   "npm_package_eslintConfig_extends_0": "react-app",
   "npm_package_eslintConfig_extends_1": "react-app/jest",
-  "npm_package_gitHead": "2fcf6088528d5d0eeca6efe4bd05ab716e5619b4",
+  "npm_package_gitHead": "3c04f9bc7389d872a004f7c3b84dc9b15259ddca",
   "npm_package_name": "weather-app",
   "npm_package_private": "true",
   "npm_package_readmeFilename": "README.md",
