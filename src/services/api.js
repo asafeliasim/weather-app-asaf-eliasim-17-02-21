@@ -1,9 +1,10 @@
 import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST,SET_ERROR_ALERT} from "../redux/constants";
 import axios from "axios";
-export const apiKey =  'GRwS1houYmjysJfDZbx8lsQjcm1tpukN';
+import env from "react-dotenv";
+
 
 export const autoCompleteUrl = (locationQuery) => dispatch => {
-    axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${locationQuery}`)
+    axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${env.API_KEY}&q=${locationQuery}`)
         .then(res=> {
             return res;
         }).catch(err =>{
@@ -17,8 +18,8 @@ export const autoCompleteUrl = (locationQuery) => dispatch => {
     })
 }
 export const getLocationByGeoPosition = (lat, long) => dispatch => {
-
-     axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${long}`)
+    console.log("key: " , process.env.API_KEY)
+     axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${env.API_KEY}&q=${lat},${long}`)
 
          .then(res => {
              const locationResult = {
@@ -44,7 +45,7 @@ export const getLocationByGeoPosition = (lat, long) => dispatch => {
 }
 export const getLocationByLocationKey = (locationKey) => dispatch => {
     
-    axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${locationKey}&apikey=${apiKey}`)
+    axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${locationKey}&apikey=${env.API_KEY}`)
         .then((res)=> {
             console.log(res.data)
             const locationResult = {
@@ -69,7 +70,7 @@ export const getLocationByLocationKey = (locationKey) => dispatch => {
 }
 export const forecastsUrl = (locationKey,isCel) => dispatch => {
    
-    axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}${isCel ? '&metric=true' : ''}`)
+    axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${env.API_KEY}${isCel ? '&metric=true' : ''}`)
         .then(res=>{
 
             const {data} = res;
