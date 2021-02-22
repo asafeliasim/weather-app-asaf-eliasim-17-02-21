@@ -7,7 +7,7 @@ import {getIconFromApi} from "../services/api";
 import Card from "@material-ui/core/Card";
 import {forecastStyle} from "../asserts/material-css/useStyles";
 import {getLocationByLocationKey} from '../services/api';
-import {getCelsius} from "../context/utils/helpers";
+import {getCelsius} from "../services/helpers";
 import {REMOVE_FROM_FAVORITE,SET_HOMEPAGE_LINK} from '../redux/constants';
 
 const FavoriteItem = ({location}) => {

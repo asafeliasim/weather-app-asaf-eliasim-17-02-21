@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
 import {forecastStyle} from '../asserts/material-css/useStyles';
 import {getIconFromApi} from '../services/api';
-import {getCelsius} from '../context/utils/helpers';
+import {getCelsius} from '../services/helpers';
 
 import styled, { keyframes } from 'styled-components';
 import { bounce } from 'react-animations'
