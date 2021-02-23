@@ -28,6 +28,7 @@ const getCurrentLocation = () => {
 }
 
 useEffect(() => {
+    console.log(new Date().getHours());
     if(currentLocation === null){
         getCurrentLocation();
     }

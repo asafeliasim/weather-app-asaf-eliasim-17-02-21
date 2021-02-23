@@ -17,7 +17,7 @@ let userPref = JSON.parse(localStorage.getItem("favorites"));
 
 export const appReducer = (
     state={  
-        isDark: !(6 <= new Date().getHours() <=18),
+        isDark: !(6 <= new Date().getHours() && 18 >= new Date().getHours()),
         isCel:false,
         homePage:true,
         currentLocation:null,
