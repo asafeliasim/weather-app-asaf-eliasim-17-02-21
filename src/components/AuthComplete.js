@@ -12,6 +12,7 @@ const AuthComplete = ({cities,setQuery,handleQueryComplete,onChange}) => {
     const [search,setSearch] = useState("");
     const dispatch = useDispatch();
     const handleChange = (query) => {
+        console.log("AUTHCOMPLETE RENDER")
         if(!/^[a-zA-Z0-9$@$!%*?&#^-_. +]+$/.test(query) && query !== ""){
             dispatch({
                 type:SET_ERROR_ALERT,
@@ -31,6 +32,7 @@ const AuthComplete = ({cities,setQuery,handleQueryComplete,onChange}) => {
     }
 
     const handleSelectCity = (city) => {
+        console.log("AUTHCOMPLETE RENDER")
         console.log(city);
         if(city){
             handleQueryComplete(city)

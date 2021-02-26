@@ -8,6 +8,7 @@ import ErrorAlert from "../shared/ErrorAlert";
 import Loading from "../shared/Loading";
 import axios from 'axios';
 import env from "react-dotenv";
+import {acuUrl} from '../services/api';
 const Home = () => {
 
     const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const Home = () => {
     const handleAuthComplete = (string) => {
         setAuthCompleteString(string);
         if(string){
-            axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${env.API_KEY}&q=${query}`)
+            axios.get(`${acuUrl}/locations/v1/cities/autocomplete?apikey=${env.API_KEY}&q=${query}`)
                 .then(res=>{
                     setCities(res.data.map(city => city.LocalizedName));
                     console.log("cities: " + cities);

@@ -1,25 +1,12 @@
 import {SET_LOCATION_BY_GEO,SET_LOCATION_FORECAST,SET_ERROR_ALERT} from "../redux/constants";
 import axios from "axios";
 import env from "react-dotenv";
+export const acuUrl = 'https://dataservice.accuweather.com'
 
 
-export const autoCompleteUrl = (locationQuery) => dispatch => {
-    axios.get(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${env.API_KEY}&q=${locationQuery}`)
-        .then(res=> {
-            return res;
-        }).catch(err =>{
-        dispatch({
-            type:SET_ERROR_ALERT,
-            payload:{
-                errorText:err.message,
-                severity:"warning"
-            }
-        })
-    })
-}
 export const getLocationByGeoPosition = (lat, long) => dispatch => {
     console.log("key: " , process.env.API_KEY)
-     axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${env.API_KEY}&q=${lat},${long}`)
+     axios.get(`${acuUrl}/locations/v1/cities/geoposition/search?apikey=${env.API_KEY}&q=${lat},${long}`)
 
          .then(res => {
              const locationResult = {
@@ -45,7 +32,7 @@ export const getLocationByGeoPosition = (lat, long) => dispatch => {
 }
 export const getLocationByLocationKey = (locationKey) => dispatch => {
     
-    axios.get(`https://dataservice.accuweather.com/locations/v1/search?q=${locationKey}&apikey=${env.API_KEY}`)
+    axios.get(`${acuUrl}/locations/v1/search?q=${locationKey}&apikey=${env.API_KEY}`)
         .then((res)=> {
             console.log(res.data)
             const locationResult = {
@@ -70,7 +57,7 @@ export const getLocationByLocationKey = (locationKey) => dispatch => {
 }
 export const forecastsUrl = (locationKey,isCel) => dispatch => {
    
-    axios.get(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${env.API_KEY}${isCel ? '&metric=true' : ''}`)
+    axios.get(`${acuUrl}/forecasts/v1/daily/5day/${locationKey}?apikey=${env.API_KEY}${isCel ? '&metric=true' : ''}`)
         .then(res=>{
 
             const {data} = res;
@@ -92,9 +79,11 @@ export const forecastsUrl = (locationKey,isCel) => dispatch => {
     })
 }
 
-export const getIconFromApi = (icon) => {
+export const getIconFromApi = (icon ) => {
+
         if (icon < 10) {
             icon = '0' + icon
+
         }
         return `https://developer.accuweather.com/sites/default/files/${icon}-s.png`
 }

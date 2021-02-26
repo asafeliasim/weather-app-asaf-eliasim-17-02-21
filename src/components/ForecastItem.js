@@ -19,7 +19,7 @@ const ForecastItem = ({item}) => {
     const dayByIndex = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     const classes = forecastStyle();
     const dayToDisplay = dayByIndex[new Date(item.Date).getDay()]
-  
+    console.log(new Date(item.Date).getDay());
     const app = useSelector(state => state.app);
     const {isCel} = app;
     const max = isCel ?  getCelsius(item.Temperature.Maximum.Value): item.Temperature.Maximum.Value ;

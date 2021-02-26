@@ -7,7 +7,7 @@ import Home from './pages/Home.js';
 import Favorites from "./pages/Favorites";
 
 import {getLocationByGeoPosition,forecastsUrl} from './services/api';
-import Loading from "./shared/Loading";
+
 
 import './sass/main.scss';
 import './App.css';
